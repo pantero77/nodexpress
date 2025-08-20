@@ -9,20 +9,20 @@ router.get('/test', (req, res) => {
 //add job via post
 
 router.post('/add', async(req, res) => {
-    let { nome, description, company, location, salary, email } = req.body;
+    let { nome, description, company, salary, email, new_job } = req.body;
 
-    //insert
     try {
-        const job = await Job.create({
+        await Job.create({
             nome,
-            description,
             company,
-            location,
+            description,
             salary,
-            email
+            email,
+            new_job
         });
-        res.redirect('/');
-    } catch (error) {
+        res.send('Job created successfully');
+    } catch (err) {
+        console.log(err);
         res.status(500).json({ error: 'Failed to create job' });
     }
 });

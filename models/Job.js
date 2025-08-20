@@ -14,10 +14,6 @@ const job = db.define('jobs', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    location: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     salary: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false
@@ -27,9 +23,8 @@ const job = db.define('jobs', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    new: {
+    new_job: {
         type: Sequelize.INTEGER,
-
     },
 });
 module.exports = job;
