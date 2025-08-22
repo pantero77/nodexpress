@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const db = require('./db/connection');
 const bodyParser = require('body-parser');
 const path = require('path');
+const Job = require('./models/Job');
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
@@ -14,6 +15,7 @@ app.listen(port, () => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //handle bars
+
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -33,7 +35,18 @@ db.authenticate()
 
 //routes
 app.get('/', (req, res) => {
-    res.render('index')
+    Job.findAll({
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        })
+        .then(jobs => {
+            res.render('index', { jobs });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        });
 });
 
 //jobs routes

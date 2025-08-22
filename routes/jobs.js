@@ -6,6 +6,11 @@ router.get('/test', (req, res) => {
     res.send('Test route is working');
 });
 
+
+router.get('/add', (req, res) => {
+    res.render('layouts/add');
+});
+
 //add job via post
 
 router.post('/add', async(req, res) => {

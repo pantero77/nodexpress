@@ -1,0 +1,37 @@
+
+
+    <div class="container-fluid">
+        <h1 id="main-title" class="text-center">Encontre seu emprego dos sonhos!</h1>
+        <p id="main-subtitle" class="text-center">A sua carreira começa aqui. Navegue pelas nossas vagas e encontre a oportunidade perfeita para você.</p>
+        <form id="search-form" class="form-inline" action="">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar vagas..." aria-label="Buscar vagas..." aria-describedby="button-search">
+                <button class="btn" type="submit" id="button-search">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <main>
+        <div id="jobs-container" class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <h2 id="job-list-title">Veja nossas vagas em destaque!</h2>
+                    <ul id="job-list" class="list-group">
+                        {{#each jobs}}
+                        <li class="list-group-item new_job">
+                            <p>{{dataValues.company}}</p>
+                            <p class="job-title">{{dataValues.title}}</p>
+                            <p class="job-salary">R$ {{dataValues.salary}}</p>
+
+                                <span class="new-job-label">Nova</span>
+
+                            <a href="#" class="btn btn-primary">Ver Vaga</a>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+
+
+                </div>
+            </div>
+    </main>
